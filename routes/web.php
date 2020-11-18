@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IncidentController;
 use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,5 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('vehicles', VehicleController::class)->only([
+    'index', 'store', "update", "destroy"
+]);
+
+Route::resource('incidents', IncidentController::class)->only([
     'index', 'store', "update", "destroy"
 ]);

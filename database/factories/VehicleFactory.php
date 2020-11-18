@@ -27,7 +27,7 @@ class VehicleFactory extends Factory
         return [
             'name' => $type["name"],
             'radioIdentificationPrefix' => "Florian Landau",
-            'radioIdentification' => "1-".$type["identification"]."-".rand(1,4), 
+            'radioIdentification' => "1-".$type["identification"]."-".rand(1,4),
         ];
     }
 }

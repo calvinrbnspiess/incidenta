@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateIncidentsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('incidents', function (Blueprint $table) {
+            $table->id();
+            $table->string("title");
+            $table->text("description");
+            $table->datetime("date");
+            $table->integer("participants");
+            $table->integer("participantsPA");
+            $table->float("duration");
+            $table->string("zipcode");
+            $table->string("city");
+            $table->string("street");
+            $table->string("category");
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('incidents');
+    }
+}
