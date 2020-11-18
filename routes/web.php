@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('vehicles', array("vehicles" => App\Models\Vehicle::all()));
-});
+Route::resource('vehicles', VehicleController::class)->only([
+    'index', 'store', "update", "destroy"
+]);
