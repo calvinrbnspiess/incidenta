@@ -45,6 +45,8 @@ class Incident extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title', 'description', 'date', 'participants', 'participantsPA', 'duration', 'zipcode', 'city', 'street', 'category'];
+
     public function vehicles()
     {
         return $this->belongsToMany('App\Models\Vehicle');

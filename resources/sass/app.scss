@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+}
+
+#menu-toggle:checked + #menu {
+    display: block;
+}
+
+h1 {
+    @apply pt-8 lg:pb-16 pb-6 text-4xl font-bold;
+}
+
+td {
+    @apply border border-gray-400 px-4 py-2 text-gray-600 font-medium;
+}
+
+.button {
+    @apply bg-indigo-600 hover:bg-indigo-800 text-xs text-white font-bold py-2 px-4 rounded;
+}

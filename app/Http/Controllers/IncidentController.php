@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Incident;
 use Illuminate\Http\Request;
 
+use function PHPSTORM_META\map;
+
 class IncidentController extends Controller
 {
     /**
@@ -35,7 +37,23 @@ class IncidentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'date' => 'required',
+            'participants' => 'required',
+            'participantsPA' => 'required',
+            'duration' => 'required',
+            'zipcode' => 'required',
+            'city' => 'required',
+            'street' => 'required',
+            'category' => 'required'
+        ]);
+
+        Incident::create($request->all());
+
+        return redirect()->route('incidents.index')
+            ->with('success', 'Incident created successfully.');
     }
 
     /**
@@ -69,7 +87,23 @@ class IncidentController extends Controller
      */
     public function update(Request $request, Incident $incident)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'date' => 'required',
+            'participants' => 'required',
+            'participantsPA' => 'required',
+            'duration' => 'required',
+            'zipcode' => 'required',
+            'city' => 'required',
+            'street' => 'required',
+            'category' => 'required'
+        ]);
+
+        $incident->update($request->all());
+
+        return redirect()->route('incidents.index')
+            ->with('success', 'Incident updated successfully.');
     }
 
     /**
@@ -80,6 +114,9 @@ class IncidentController extends Controller
      */
     public function destroy(Incident $incident)
     {
-        //
+        $incident->delete();
+
+        return redirect()->route('incidents.index')
+            ->with('success', 'Vehicle deleted successfully.');
     }
 }

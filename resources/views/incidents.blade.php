@@ -19,13 +19,14 @@
         </div>
     @endif
 
-    <table border="1">
+    <table class="table-auto">
         <thead>
             <th>ID</th>
             <th>Stichwort</th>
             <th>Beschreibung</th>
             <th>Fahrzeuganzahl</th>
             <th>Fahrzeuge</th>
+            <th>Aktionen</th>
         </thead>
         <tbody>
             @foreach($incidents as $incident)
@@ -35,6 +36,13 @@
                 <td>{{ $incident->description }}</td>
                 <td>{{ count($incident->vehicles) }}</td>
                 <td>{{ $incident->vehicles->map(function($vehicle) { return $vehicle->radioIdentification; })->join(", ") }}</td>
+                <td>
+                    <form action="{{ url('incidents/'.$incident->id)}}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <button class="button" type="submit">Einsatz löschen</button>
+                   </form>
+                </td>
             </tr>
             @endforeach
         </tbody>
