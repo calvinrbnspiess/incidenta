@@ -16,9 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function() {
-    return redirect()->route('incidents.index');
+    return redirect()->route('dashboard');
 });
-
 
 Route::resource('vehicles', VehicleController::class)->only([
     'index', 'store', "update", "destroy"
@@ -27,3 +26,6 @@ Route::resource('vehicles', VehicleController::class)->only([
 Route::resource('incidents', IncidentController::class)->only([
     'index', 'store', "update", "destroy"
 ]);
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

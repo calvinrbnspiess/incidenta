@@ -34,7 +34,7 @@
             {{-- <a href="#" class="lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 pointer-cursor">
             <img class="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400" src="https://pbs.twimg.com/profile_images/1128143121475342337/e8tkhRaz_normal.jpg" alt="Andy Leverenz">
             </a> --}}
-            <button class="button">Login</button>
+            <a href="login" class="button">Login</a>
         </div>
     </header>
     <div class="flex flex-col flex-grow overflow-y-scroll">
