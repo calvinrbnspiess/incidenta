@@ -1,7 +1,6 @@
 @extends('app')
 
 @section('content')
-<div class="container">
     <h1>Fahrzeuge</h1>
 
     @if ($message = Session::get('success'))
@@ -92,5 +91,4 @@
             <button type="submit">Fahrzeug hinzufügen</button>
         </fieldset>
     </form>
-</div>
 @endsection

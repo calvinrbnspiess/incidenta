@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function() {
+    return redirect()->route('incidents.index');
+});
+
+
 Route::resource('vehicles', VehicleController::class)->only([
     'index', 'store', "update", "destroy"
 ]);

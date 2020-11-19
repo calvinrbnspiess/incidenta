@@ -1,7 +1,6 @@
 @extends('app')
 
 @section('content')
-<div class="container">
     <h1>Einsätze</h1>
 
     @if ($message = Session::get('success'))
@@ -18,8 +17,8 @@
             </ul>
         </div>
     @endif
-
-    <table class="table-auto">
+    <div class="overflow-x-auto lg:overflow-visible">
+    <table class="table-auto whitespace-nowrap lg:whitespace-normal">
         <thead>
             <th>ID</th>
             <th>Stichwort</th>
@@ -47,5 +46,5 @@
             @endforeach
         </tbody>
     </table>
-</div>
+   </div>
 @endsection
