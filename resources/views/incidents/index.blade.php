@@ -10,7 +10,7 @@
                 <table class="table-auto whitespace-nowrap lg:whitespace-normal w-full">
                     <thead>
                         <th>Nr</th>
-                        <th>Datum/Unhrzeit</th>
+                        <th>Datum/Uhrzeit</th>
                         <th>Stichwort</th>
                         <th>Einsatzstelle</th>
                         <th>Dauer</th>

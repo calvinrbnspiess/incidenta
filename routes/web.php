@@ -20,9 +20,7 @@ Route::get('/', function() {
     return redirect()->route('incidents.index');
 });
 
-Route::middleware(['auth:sanctum'])->resource('vehicles', VehicleController::class)->only([
-    'index', 'store', "update", "destroy"
-]);
+Route::middleware(['auth:sanctum'])->resource('vehicles', VehicleController::class);
 
 Route::resource('incidents', IncidentController::class);
 

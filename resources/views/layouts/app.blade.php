@@ -33,8 +33,18 @@
             <main class="flex-grow">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-2 lg:py-12 lg:pb-2">
                     @if($message = Session::get('success'))
-                    <div>
-                        <p>{{ $message }}</p>
+                    <div class="flex flex-col">
+                        <div class="w-full my-2 flex align-bottom rounded-lg border bg-white border-green-600 p-2" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                                <div class="flex items-center justify-start">
+                                <div class="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+                                    <!-- Heroicon name: check -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                      </svg>
+                                </div>
+                                <p class="ml-2">{{ $message }}</p>
+                                </div>
+                        </div>
                     </div>
                     @endif
                     @if($errors->any())

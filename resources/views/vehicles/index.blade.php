@@ -21,6 +21,19 @@
         </div>
     @endforeach
     </div>
-    <button class="button my-4">Neues Fahrzeug</button>
+    <button class="button my-4" id="create-vehicle">Neues Fahrzeug</button>
 </div>
+<div id="modal"></div>
+<script>
+    document.querySelector("#create-vehicle").addEventListener("click", () => {
+        fetch("/vehicles/create").then(res => res.text()).then((text) => {
+            document.querySelector("#modal").innerHTML = text;
+
+            document.querySelector("#modal-cancel").addEventListener("click", () => {
+                console.log("click")
+                document.querySelector("#modal").innerHTML = "";
+            })
+        })
+    })
+</script>
 </x-app-layout>
