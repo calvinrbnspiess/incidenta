@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="flex-col flex-grow py-6 lg:py-12">
+    <div class="flex-col flex-grow">
     <h1>Fahrzeuge</h1>
     <div class="grid grid-template grid-cols-1 lg:grid-cols-2 gap-2 gap-y-4">
     @foreach($vehicles as $vehicle)

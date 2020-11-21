@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="flex-col flex-grow py-6 lg:py-12">
+    <div class="flex-col flex-grow">
              <div class="flex items-center py-4">
                 <h1 class="pt-0 pb-0">Einsätze</h1>
                 @if(Auth::user())

@@ -31,7 +31,7 @@
 
             <!-- Page Content -->
             <main class="flex-grow">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-2 lg:py-12 lg:pb-2">
                     @if($message = Session::get('success'))
                     <div>
                         <p>{{ $message }}</p>
