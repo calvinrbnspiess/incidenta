@@ -31,11 +31,11 @@ class IncidentFactory extends Factory
 
         return [
             'title' => $type["title"],
-            'description' => $this->faker->text(),
-            'date' => $this->faker->dateTime(),
+            'description' => $this->faker->realText(2400),
+            'date' => $this->faker->dateTimeBetween("-3 months", "now"),
             'participants' => rand(3,26),
             'participantsPA'=> rand(0,2),
-            'duration' => rand(0.5,5),
+            'duration' => rand(0,3) + rand(1,3) * 0.5,
             'zipcode' => "76829",
             'city' => "Landau",
             'street' => $this->faker->streetName(),
