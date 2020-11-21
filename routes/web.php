@@ -20,13 +20,11 @@ Route::get('/', function() {
     return redirect()->route('incidents.index');
 });
 
-Route::resource('vehicles', VehicleController::class)->only([
+Route::middleware(['auth:sanctum'])->resource('vehicles', VehicleController::class)->only([
     'index', 'store', "update", "destroy"
 ]);
 
-Route::resource('incidents', IncidentController::class)->only([
-    'index', 'store', "update", "destroy"
-]);
+Route::resource('incidents', IncidentController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

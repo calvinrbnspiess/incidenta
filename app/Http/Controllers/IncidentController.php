@@ -16,7 +16,7 @@ class IncidentController extends Controller
      */
     public function index()
     {
-        return view('incidents', array("incidents" => Incident::all()));
+        return view('incidents.index', array("incidents" => Incident::all()->sortByDesc("date")));
     }
 
     /**
@@ -26,7 +26,7 @@ class IncidentController extends Controller
      */
     public function create()
     {
-        //
+        return view('incidents.create');
     }
 
     /**
@@ -40,10 +40,10 @@ class IncidentController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'date' => 'required',
-            'participants' => 'required',
-            'participantsPA' => 'required',
-            'duration' => 'required',
+            'date' => 'required|before:now',
+            'participants' => 'required|gt:0',
+            'participantsPA' => 'required|gt:0',
+            'duration' => 'required|gt:0',
             'zipcode' => 'required',
             'city' => 'required',
             'street' => 'required',
@@ -64,7 +64,7 @@ class IncidentController extends Controller
      */
     public function show(Incident $incident)
     {
-        //
+        return view('incidents.show', array("incident" => $incident));
     }
 
     /**
@@ -75,7 +75,7 @@ class IncidentController extends Controller
      */
     public function edit(Incident $incident)
     {
-        //
+        //return view('incidents.edit', array("incident" => $incident));
     }
 
     /**

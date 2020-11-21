@@ -18,9 +18,11 @@
                     <x-jet-nav-link href="{{ route('incidents.index') }}" :active="request()->routeIs('incidents.index')">
                         {{ __('Einsätze') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('vehicles.index') }}" :active="request()->routeIs('vehicles.index')">
-                        {{ __('Fahrzeuge') }}
-                    </x-jet-nav-link>
+                    @if (Auth::user())
+                        <x-jet-nav-link href="{{ route('vehicles.index') }}" :active="request()->routeIs('vehicles.index')">
+                            {{ __('Fahrzeuge') }}
+                        </x-jet-nav-link>
+                    @endif
                 </div>
             </div>
             <div class="flex items-center ml-6">
@@ -36,7 +38,7 @@
                                 @else
                                     <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                                         @if (Auth::user())
-                                        <div>{{ Auth::user()->name }}</div>
+                                            <div>{{ Auth::user()->name }}</div>
                                         @else
                                         <div>Gast</div>
                                         @endif
@@ -136,9 +138,12 @@
             <x-jet-responsive-nav-link href="{{ route('incidents.index') }}" :active="request()->routeIs('incidents.index')">
                 Einsätze
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('vehicles.index') }}" :active="request()->routeIs('vehicles.index')">
-                Fahrzeuge
-            </x-jet-responsive-nav-link>
+
+            @if (Auth::user())
+                <x-jet-responsive-nav-link href="{{ route('vehicles.index') }}" :active="request()->routeIs('vehicles.index')">
+                    Fahrzeuge
+                </x-jet-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

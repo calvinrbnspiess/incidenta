@@ -13,10 +13,38 @@ h1 {
     @apply py-6 pb-8 text-4xl font-bold;
 }
 
+.subtitle {
+    @apply py-4 font-bold text-2xl;
+}
+
 td {
     @apply border border-gray-400 px-4 py-2 text-gray-600 font-medium;
 }
 
 .button {
-    @apply bg-indigo-600 hover:bg-indigo-800 text-xs text-white font-bold py-2 px-4 rounded;
+    @apply bg-indigo-600 hover:bg-indigo-800 text-xs text-center text-white font-bold py-2 px-4 rounded;
+
+    &--danger {
+        @apply bg-pink-600 hover:bg-pink-800;
+    }
+
+    &--large {
+        @apply text-base;
+    }
+}
+
+.tag {
+    @apply inline text-sm text-center font-medium bg-indigo-100 py-1 px-2 rounded text-indigo-500 justify-center align-middle;
+
+    &--column + .tag--column {
+        @apply mt-2;
+    }
+}
+
+.label {
+    @apply block text-sm mt-2 font-medium text-gray-700;
+}
+
+.input-field {
+    @apply mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 border rounded-md;
 }
