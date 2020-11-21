@@ -1,8 +1,10 @@
-@extends('app')
-
-@section('content')
-    <h1>Fahrzeuge</h1>
-
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Fahrzeuge
+        </h2>
+    </x-slot>
+    <div class="flex-col flex-grow py-6 lg:py-12">
     @if ($message = Session::get('success'))
         <div>
             <p>{{ $message }}</p>
@@ -17,7 +19,7 @@
             </ul>
         </div>
     @endif
-
+    <h1>Fahrzeuge</h1>
     <table border="1">
         <thead>
             <th>ID</th>
@@ -91,4 +93,5 @@
             <button type="submit">Fahrzeug hinzufügen</button>
         </fieldset>
     </form>
-@endsection
+</div>
+</x-app-layout>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Incident;
 use App\Http\Controllers\IncidentController;
 use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function() {
-    return redirect()->route('dashboard');
+    return redirect()->route('incidents.index');
 });
 
 Route::resource('vehicles', VehicleController::class)->only([
@@ -26,6 +27,7 @@ Route::resource('vehicles', VehicleController::class)->only([
 Route::resource('incidents', IncidentController::class)->only([
     'index', 'store', "update", "destroy"
 ]);
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
