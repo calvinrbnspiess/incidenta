@@ -16,7 +16,7 @@ class CreateIncidentsTable extends Migration
         Schema::create('incidents', function (Blueprint $table) {
             $table->id();
             $table->string("title");
-            $table->text("description");
+            $table->text("description")->nullable();
             $table->datetime("date");
             $table->integer("participants");
             $table->integer("participantsPA");
