@@ -2,8 +2,6 @@ require("./bootstrap");
 
 require("alpinejs");
 
-window.MAIN_VIEW = true;
-
 const loadModals = function() {
     const modal = document.querySelector("#modal");
     const modalTriggers = document.querySelectorAll(

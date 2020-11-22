@@ -21258,8 +21258,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
-window.MAIN_VIEW = true;
-
 var loadModals = function loadModals() {
   var modal = document.querySelector("#modal");
   var modalTriggers = document.querySelectorAll("[data-type='modal-trigger']");
