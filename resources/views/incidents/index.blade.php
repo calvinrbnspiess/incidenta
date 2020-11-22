@@ -7,6 +7,9 @@
                 @endif
              </div>
             <div class="overflow-x-auto lg:overflow-x-visible">
+                @if(count($incidents) === 0)
+                <td>Noch keine Einsätze vorhanden</td>
+                @else
                 <table class="table-auto whitespace-nowrap lg:whitespace-normal w-full">
                     <thead>
                         <th>Nr</th>
@@ -33,6 +36,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                @endif
             </div>
     </div>
     <div id="modal"></div>
