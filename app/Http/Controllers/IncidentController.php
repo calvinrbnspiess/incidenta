@@ -26,7 +26,7 @@ class IncidentController extends Controller
      */
     public function create()
     {
-        return view('incidents.create');
+        return view('incidents.edit', array("title" => "Einsatz erstellen", "url" => url('incidents'), "method" => "POST", "incident" => null));
     }
 
     /**
@@ -39,7 +39,7 @@ class IncidentController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'description' => 'required',
+            'description' => 'present|string',
             'date' => 'required|before:now',
             'participants' => 'required|gt:0',
             'participantsPA' => 'required|gt:0',
@@ -75,7 +75,7 @@ class IncidentController extends Controller
      */
     public function edit(Incident $incident)
     {
-        //return view('incidents.edit', array("incident" => $incident));
+        return view('incidents.edit', array("title" => "Einsatz bearbeiten", "url" => url("incidents/".$incident->id), "method" => "PATCH", "incident" => $incident));
     }
 
     /**
