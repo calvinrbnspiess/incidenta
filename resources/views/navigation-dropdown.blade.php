@@ -114,7 +114,7 @@
                         </x-jet-dropdown>
                     </div>
                 @else
-                    <a href="login" class="button">Login</a>
+                    <a href="/login" class="button">Login</a>
                 @endif
                  <!-- Hamburger -->
                 <div class="ml-4 flex items-center sm:hidden">
