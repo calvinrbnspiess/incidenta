@@ -2,6 +2,8 @@ require("./bootstrap");
 
 require("alpinejs");
 
+window.MAIN_VIEW = true;
+
 const loadModals = function() {
     const modal = document.querySelector("#modal");
     const modalTriggers = document.querySelectorAll(
@@ -10,7 +12,11 @@ const loadModals = function() {
 
     for (const modalTrigger of modalTriggers) {
         modalTrigger.addEventListener("click", () => {
-            fetch(modalTrigger.getAttribute("data-url"))
+            fetch(modalTrigger.getAttribute("data-url"), {
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            })
                 .then(res => res.text())
                 .then(text => {
                     modal.innerHTML = text;

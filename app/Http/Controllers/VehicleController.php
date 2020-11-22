@@ -22,8 +22,12 @@ class VehicleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if (!$request->ajax()) {
+            return response('Forbidden.', 403);
+        }
+
         return view('vehicles.edit', array("title" => "Fahrzeug erstellen", "url" => url('vehicles'), "method" => "POST", "vehicle" => null));
     }
 

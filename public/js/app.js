@@ -21258,6 +21258,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
+window.MAIN_VIEW = true;
+
 var loadModals = function loadModals() {
   var modal = document.querySelector("#modal");
   var modalTriggers = document.querySelectorAll("[data-type='modal-trigger']");
@@ -21269,7 +21271,11 @@ var loadModals = function loadModals() {
     var _loop = function _loop() {
       var modalTrigger = _step.value;
       modalTrigger.addEventListener("click", function () {
-        fetch(modalTrigger.getAttribute("data-url")).then(function (res) {
+        fetch(modalTrigger.getAttribute("data-url"), {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest"
+          }
+        }).then(function (res) {
           return res.text();
         }).then(function (text) {
           modal.innerHTML = text;

@@ -31,8 +31,12 @@ class IncidentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if (!$request->ajax()) {
+            return response('Forbidden.', 403);
+        }
+
         return view('incidents.edit', array("title" => "Einsatz erstellen", "url" => url('incidents'), "method" => "POST", "incident" => null));
     }
 
