@@ -24,7 +24,7 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        return view('vehicles.create');
+        return view('vehicles.edit', array("title" => "Fahrzeug erstellen", "url" => url('vehicles'), "method" => "POST", "vehicle" => null));
     }
 
     /**
@@ -44,7 +44,17 @@ class VehicleController extends Controller
         Vehicle::create($request->all());
 
         return redirect()->route('vehicles.index')
-            ->with('success', 'Vehicle created successfully.');
+            ->with('success', 'Fahrzeug erfolgreich angelegt.');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Vehicle  $vehicle
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Vehicle $vehicle) {
+        return view('vehicles.edit', array("title" => "Fahrzeug bearbeiten", "url" => url("vehicles/".$vehicle->id), "method" => "PATCH", "vehicle" => $vehicle));
     }
 
     /**
@@ -65,7 +75,7 @@ class VehicleController extends Controller
         $vehicle->update($request->all());
 
         return redirect()->route('vehicles.index')
-            ->with('success', 'Vehicle updated successfully.');
+            ->with('success', 'Fahrzeug erfolgreich aktualisiert.');
     }
 
     /**
@@ -79,6 +89,6 @@ class VehicleController extends Controller
         $vehicle->delete();
 
         return redirect()->route('vehicles.index')
-            ->with('success', 'Vehicle deleted successfully.');
+            ->with('success', 'Fahrzeug wurde entfernt.');
     }
 }

@@ -16,7 +16,6 @@
         @livewireStyles
 
         <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen flex flex-col bg-gray-100">
@@ -66,6 +65,7 @@
                     @endif
                     {{ $slot }}
                 </div>
+                <div id="modal"></div>
             </main>
             <div class="flex justify-center text-center py-4 text-gray-600 font-medium">
                 {{ date("Y") }} © Incidenta
@@ -74,5 +74,6 @@
         @stack('modals')
 
         @livewireScripts
+        <script src="{{ mix('js/app.js') }}" defer></script>
     </body>
 </html>

@@ -55,7 +55,7 @@
         </p>
         @if(Auth::user())
         <div class="my-4 flex">
-            <button class="button mr-2" type="submit" id="edit-incident" data-url="{{ url('incidents/'.$incident->id."/edit") }}">Einsatz bearbeiten</button>
+            <button class="button mr-2" data-type="modal-trigger" data-url="{{ url('incidents/'.$incident->id."/edit") }}">Einsatz bearbeiten</button>
             <form action="{{ url('incidents/'.$incident->id) }}"
                 method="POST">
                 @method('DELETE')
@@ -65,19 +65,4 @@
         </div>
     @endif
     </div>
-    <div id="modal"></div>
-    <script>
-        const modal = document.querySelector("#edit-incident");
-
-        modal.addEventListener("click", () => {
-            fetch(modal.getAttribute("data-url")).then(res => res.text()).then((text) => {
-                document.querySelector("#modal").innerHTML = text;
-
-                document.querySelector("#modal-cancel").addEventListener("click", () => {
-                    console.log("click")
-                    document.querySelector("#modal").innerHTML = "";
-                })
-            })
-        })
-    </script>
 </x-app-layout>

@@ -53,7 +53,7 @@ class IncidentController extends Controller
         Incident::create($request->all());
 
         return redirect()->route('incidents.index')
-            ->with('success', 'Incident created successfully.');
+            ->with('success', 'Einsatz erfolgreich angelegt.');
     }
 
     /**
@@ -103,7 +103,7 @@ class IncidentController extends Controller
         $incident->update($request->all());
 
         return redirect()->route('incidents.index')
-            ->with('success', 'Incident updated successfully.');
+            ->with('success', 'Einsatz wurde aktualisiert.');
     }
 
     /**
@@ -117,6 +117,6 @@ class IncidentController extends Controller
         $incident->delete();
 
         return redirect()->route('incidents.index')
-            ->with('success', 'Vehicle deleted successfully.');
+            ->with('success', 'Einsatz wurde entfernt.');
     }
 }
