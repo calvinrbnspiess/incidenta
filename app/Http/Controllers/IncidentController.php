@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Incident;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
 use function PHPSTORM_META\map;
@@ -15,6 +16,35 @@ class IncidentController extends Controller
         $this->middleware('auth:sanctum')->except(['index', 'show']);
     }
 
+    private function validateRequest($request) {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'nullable',
+            'date' => 'required|before:now',
+            'participants' => 'required|min:0',
+            'participantsPA' => 'required|min:0',
+            'duration' => 'required|gt:0',
+            'zipcode' => 'required',
+            'city' => 'required',
+            'street' => 'required',
+            'category' => 'required',
+        ]);
+    }
+
+    private function saveVehicles(Incident $incident, $vehicles){
+        $incident->vehicles()->detach();
+        foreach($vehicles as $vehicle) {
+            if($vehicle === 0) {
+                continue;
+            }
+
+            $vehicleEloquent = Vehicle::find($vehicle);
+
+            if(isset($vehicleEloquent)) {
+                $incident->vehicles()->save($vehicleEloquent);
+            }
+        }
+    }
 
     /**
      * Display a listing of the resource.
@@ -37,7 +67,7 @@ class IncidentController extends Controller
             return response('Forbidden.', 403);
         }
 
-        return view('incidents.edit', array("title" => "Einsatz erstellen", "url" => url('incidents'), "method" => "POST", "incident" => null));
+        return view('incidents.edit', array("title" => "Einsatz erstellen", "url" => url('incidents'), "method" => "POST", "incident" => null, "vehicles" => Vehicle::all()));
     }
 
     /**
@@ -48,22 +78,13 @@ class IncidentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'present|string',
-            'date' => 'required|before:now',
-            'participants' => 'required|gt:0',
-            'participantsPA' => 'required|gt:0',
-            'duration' => 'required|gt:0',
-            'zipcode' => 'required',
-            'city' => 'required',
-            'street' => 'required',
-            'category' => 'required'
-        ]);
+        $this->validateRequest($request);
 
-        Incident::create($request->all());
+        $incident = Incident::create($request->except("vehicles"));
 
-        return redirect()->route('incidents.index')
+        $this->saveVehicles($incident, $request->vehicles);
+
+        return redirect()->route('incidents.show', [$incident->id])
             ->with('success', 'Einsatz erfolgreich angelegt.');
     }
 
@@ -86,7 +107,7 @@ class IncidentController extends Controller
      */
     public function edit(Incident $incident)
     {
-        return view('incidents.edit', array("title" => "Einsatz bearbeiten", "url" => url("incidents/".$incident->id), "method" => "PATCH", "incident" => $incident));
+        return view('incidents.edit', array("title" => "Einsatz bearbeiten", "url" => url("incidents/".$incident->id), "method" => "PATCH", "incident" => $incident, "vehicles" => Vehicle::all()));
     }
 
     /**
@@ -98,22 +119,12 @@ class IncidentController extends Controller
      */
     public function update(Request $request, Incident $incident)
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'date' => 'required',
-            'participants' => 'required',
-            'participantsPA' => 'required',
-            'duration' => 'required',
-            'zipcode' => 'required',
-            'city' => 'required',
-            'street' => 'required',
-            'category' => 'required'
-        ]);
+        $this->validateRequest($request);
 
-        $incident->update($request->all());
+        $incident->update($request->except("vehicles"));
+        $this->saveVehicles($incident, $request->vehicles);
 
-        return redirect()->route('incidents.index')
+        return redirect()->route('incidents.show', [$incident->id])
             ->with('success', 'Einsatz wurde aktualisiert.');
     }
 

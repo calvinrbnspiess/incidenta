@@ -39,7 +39,7 @@
                     </td>
                     <td>
                         <div class="flex flex-col lg:flex-row">
-                            @foreach($incident->vehicles->map(function($vehicle) { return $vehicle->radioIdentification; }) as $vehicle)
+                            @foreach($incident->vehicles->map(function($vehicle) { return $vehicle->radioIdentificationPrefix." ".$vehicle->radioIdentification; }) as $vehicle)
                                 <span class="tag m-2">
                                     {{ $vehicle }}
                                 </span>
@@ -51,7 +51,11 @@
         </table>
         <h2 class="subtitle">Beschreibung</h2>
         <p>
-            {{ $incident->description }}
+            @if($incident->description)
+                {{ $incident->description }}
+            @else
+                <i>Keine Beschreibung hinterlegt</i>
+            @endif
         </p>
         @if(Auth::user())
         <div class="my-4 flex">

@@ -4,7 +4,7 @@
         <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
       </div>
       <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-      <form method="post" action="{{ $url }}" class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+      <form method="post" action="{{ $url }}" class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all max-h-screen overflow-y-scroll sm:my-4 sm:align-middle sm:max-w-2xl sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
         @method($method)
         @csrf
         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -40,9 +40,18 @@
                     <input type="number" class="input-field" placeholder="PA-Träger" name="participantsPA" id="participantsPA" value="{{ old('participantsPA', optional($incident)->participantsPA) }}">
                 </div>
             </label>
+            <label class="label" for="title">
+                Fahrzeuge
+                <select id="vehicles" name="vehicles[]" multiple class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="" {{ isset($incident) && $incident->vehicles()->count() === 0 ? "selected" : "" }}>Keine Fahrzeuge</option>
+                    @foreach($vehicles as $vehicle)
+                     <option value="{{ $vehicle->id }}" {{ isset($incident) && $incident->vehicles->contains($vehicle) ? "selected" : "" }}>{{ $vehicle->name }} ({{ $vehicle->radioIdentificationPrefix }} {{ $vehicle->radioIdentification }})</option>
+                    @endforeach
+                  </select>
+            </label>
             <label class="label" for="description">
                 Beschreibung
-                <textarea class="input-field" name="description" id="description">{{ old('description', optional($incident)->description) }}</textarea>
+                <textarea class="input-field h-36" name="description" id="description">{{ old('description', optional($incident)->description) }}</textarea>
             </label>
         </div>
         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex justify-end">
