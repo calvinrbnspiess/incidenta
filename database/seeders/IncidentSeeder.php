@@ -17,7 +17,7 @@ class IncidentSeeder extends Seeder
     {
         Incident::factory()->times(25)->create()->each(function($incident) {
             $vehicles = Vehicle::inRandomOrder()->limit(rand(0, 5))->get();
-
+            echo count($vehicles);
             $incident->vehicles()->saveMany($vehicles);
         });
     }

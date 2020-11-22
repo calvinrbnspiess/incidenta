@@ -34,7 +34,7 @@ class IncidentFactory extends Factory
             'description' => $this->faker->realText(2400),
             'date' => $this->faker->dateTimeBetween("-3 months", "now"),
             'participants' => rand(3,26),
-            'participantsPA'=> rand(0,2),
+            'participantsPA'=> rand(0,2) * 2,
             'duration' => rand(0,3) + rand(1,3) * 0.5,
             'zipcode' => "76829",
             'city' => "Landau",
