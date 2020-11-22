@@ -38,7 +38,7 @@
                         Fahrzeuge
                     </td>
                     <td>
-                        <div class="flex">
+                        <div class="flex flex-col lg:flex-row">
                             @foreach($incident->vehicles->map(function($vehicle) { return $vehicle->radioIdentification; }) as $vehicle)
                                 <span class="tag m-2">
                                     {{ $vehicle }}

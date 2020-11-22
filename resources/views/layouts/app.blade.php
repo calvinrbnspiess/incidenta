@@ -50,7 +50,7 @@
                     @if($errors->any())
                         <div class="flex flex-col">
                             @foreach($errors->all() as $error)
-                            <div class="w-full my-2 flex align-bottom rounded-lg border border-red-600 p-2" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                            <div class="w-full my-2 flex align-bottom rounded-lg border bg-white border-red-600 p-2" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
                                     <div class="flex items-center justify-start">
                                     <div class="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
                                         <!-- Heroicon name: exclamation -->
